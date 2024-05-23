@@ -1,0 +1,61 @@
+.betsContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.balanceContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.betInput {
+  width: 80px;
+  padding: 5px;
+  font-size: 16px;
+}
+
+.maxButton, .clearButton {
+  padding: 5px 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 10px;
+}
+
+.betButton {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+  padding: 10px;
+  transition: border 0.3s ease;
+}
+
+.imageContainer {
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.betButton .winMultiplier {
+  margin-top: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.selected {
+  border: 2px solid #ff0;
+  border-radius: 5px;
+}
