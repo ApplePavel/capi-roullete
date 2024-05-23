@@ -10,7 +10,7 @@
   .logo{
     height: 80px;
     width: 350px;
-    background: url('../public/icons/capibara.png') no-repeat;
+    background: url('../../public/icons/capibara.png') no-repeat;
     background-size: contain;
     transition: all .3s ease;
   }
@@ -53,7 +53,7 @@
     width: 150px;
     height: 35px;
     transition: all .7s ease;
-    background-image: url("../public/icons/login.png");
+    background-image: url("../../public/icons/login.png");
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: 5px 50%;
@@ -76,7 +76,7 @@
     width: 40px;
     height: 35px;
     transition: all .7s ease;
-    background-image: url("../public/icons/logout.png");
+    background-image: url("../../public/icons/logout.png");
     background-size: 30px 30px;
     background-repeat: no-repeat;
     background-position: 5px 50%;

@@ -1,0 +1,24 @@
+.container {
+    margin: 20px 0;
+  }
+  
+  .betsList {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .betItem {
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    color: #fff;
+  }
+  
+  .win {
+    background-color: green;
+  }
+  
+  .loss {
+    background-color: red;
+  }
+  

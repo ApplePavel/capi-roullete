@@ -5,7 +5,6 @@ import Roulette from "../components/Roulette/Roulette";
 const Home: React.FC = () => {
   return (
     <div className={styles.container}>
-      <Header />
       <Roulette></Roulette>
     </div>
   );
