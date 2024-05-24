@@ -7,7 +7,7 @@ import betsReducer from './betsSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['bets'],
+  whitelist: ['balance', 'bets'], 
 };
 
 const rootReducer = combineReducers({
@@ -29,7 +29,7 @@ const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof store.getState>; 
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
