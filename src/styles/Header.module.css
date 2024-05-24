@@ -5,11 +5,14 @@
     padding: 10px 20px;
     background-color: #1a1a1a; 
     color: #ffffff;
+    background-image: url('../../public/icons/background.jpg');
+    background-size:cover;
+    background-repeat: no-repeat;
   }
   
   .logo{
     height: 80px;
-    width: 350px;
+    width: 650px;
     background: url('../../public/icons/capibara.png') no-repeat;
     background-size: contain;
     transition: all .3s ease;
