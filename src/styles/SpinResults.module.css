@@ -1,0 +1,63 @@
+/* SpinResults.module.css */
+.container {
+  margin: 20px 0;
+}
+
+.spins {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.spin {
+  width: 20px;
+  height: 20px;
+  margin: 2px;
+  border-radius: 50%;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.black {
+  background-color: black;
+}
+
+.golden {
+  background-color: gold;
+}
+
+.statistics {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.statItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.statImage {
+
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.statItem .yellow {
+  background-color: yellow;
+}
+
+.statItem .black {
+  background-color: black;
+}
+
+.statItem .golden {
+  background-color: gold;
+}

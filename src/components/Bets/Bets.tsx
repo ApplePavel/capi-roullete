@@ -23,8 +23,13 @@ const Bets: React.FC<BetsProps> = ({ bet, setBet, betType, handleBetTypeChange, 
           disabled={isSpinning}
           className={styles.betInput}
         />
-        <button onClick={() => setBet(balance)} disabled={isSpinning} className={styles.maxButton}>MAX</button>
-        <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.clearButton}>CLEAR</button>
+        <button onClick={() => setBet(bet + 1)} disabled={isSpinning} className={styles.betAdjustButton}>+1</button>
+        <button onClick={() => setBet(bet + 5)} disabled={isSpinning} className={styles.betAdjustButton}>+5</button>
+        <button onClick={() => setBet(Math.floor(bet / 2))} disabled={isSpinning} className={styles.betAdjustButton}>1/2</button>
+        <button onClick={() => setBet(bet * 2)} disabled={isSpinning} className={styles.betAdjustButton}>x2</button>
+        <button onClick={() => setBet(balance)} disabled={isSpinning} className={styles.betAdjustButton}>MAX</button>
+        <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
+        
       </div>
       <div className={styles.buttonsContainer}>
         <button

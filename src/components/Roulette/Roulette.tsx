@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
-import { addBet } from '../../store/betsSlice';
+import { addSpin } from '../../store/resultsSlice';
 import Bets from '../Bets/Bets';
 import Timer from '../Timer/Timer';
 import { generateSpinPosition } from '../Roulette/random/generateposition';
 import { determineWinningSegment } from '../Roulette/random/determineWinningSegment';
-import BetsHistory from '../BetsHistory/BetsHistory';
+import SpinResults from '../SpinResults/SpinResults';
 import styles from '../../styles/Roulette.module.css';
 
 const TimerInSec = 7;
@@ -17,7 +17,6 @@ const spinDuration = 9000;
 const Roulette: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinPosition, setSpinPosition] = useState(6400);
-  const [selectedSegment, setSelectedSegment] = useState<string | null>(null);
   const [bet, setBet] = useState(0);
   const [betType, setBetType] = useState<string | null>(null);
 
@@ -29,8 +28,9 @@ const Roulette: React.FC = () => {
       generateSpinPosition()
         .then(([randomNumber, spinPosition]) => {
           const timer = setTimeout(() => {
+            dispatch(addSpin(randomNumber));
+
             const winningSegment = determineWinningSegment(randomNumber);
-            setSelectedSegment(winningSegment);
 
             if (betType) {
               const won = betType === winningSegment;
@@ -38,10 +38,8 @@ const Roulette: React.FC = () => {
 
               if (won) {
                 dispatch(incrementBalance(bet * winMultiplier));
-                dispatch(addBet({ amount: bet, type: betType, result: 'win' }));
               } else {
                 dispatch(decrementBalance(bet));
-                dispatch(addBet({ amount: bet, type: betType, result: 'loss' }));
               }
             }
 
@@ -54,7 +52,6 @@ const Roulette: React.FC = () => {
         })
         .catch(error => {
           console.error('Error generating spin position:', error);
-          // Optional: Handle the error case here if needed
         });
     }
   }, [isSpinning, bet, betType, dispatch]);
@@ -71,13 +68,9 @@ const Roulette: React.FC = () => {
           style={{ backgroundPositionX: `${spinPosition}px` }}
         ></div>
       </div>
-      <div className={styles.controls}>
-        <div>Balance: {balance}</div>
-        {selectedSegment && <div>Winning Segment: {selectedSegment}</div>}
-      </div>
       <Bets bet={bet} setBet={setBet} betType={betType} handleBetTypeChange={setBetType} isSpinning={isSpinning} balance={balance} />
       {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
-      <BetsHistory />
+      <SpinResults />
     </div>
   );
 };
