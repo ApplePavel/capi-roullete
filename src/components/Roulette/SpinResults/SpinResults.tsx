@@ -2,9 +2,9 @@
 import React from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
-import { RootState } from '../../store/store';
-import styles from '../../styles/SpinResults.module.css';
-import { determineWinningSegment } from '../../components/Roulette/random/determineWinningSegment';
+import { RootState } from '../../../store/store';
+import styles from '../../../styles/SpinResults.module.css';
+import { determineWinningSegment } from '../random/determineWinningSegment';
 
 const SpinResults: React.FC = () => {
   const { spins, count } = useSelector((state: RootState) => state.results);

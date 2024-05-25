@@ -1,0 +1,64 @@
+/* styles/Wheel.module.css */
+.container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    background-color: rgb(39, 35, 38);
+}
+  
+.roulette {
+}
+
+.wheel {
+    width: 650px;
+    height: 650px;
+    background-image: url('../../public/wheel/wheel.png');
+    background-repeat: repeat-x;
+    position: relative;
+    transition: 4s cubic-bezier(0.25, 1, 0.5, 1);
+
+}
+
+.roulette::after {
+    content: '';
+    width: 5px;
+    height: 50px;
+    background: #fff;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 1000px;
+    margin: auto;
+    z-index: 1;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.betControls {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.betControls button {
+    padding: 10px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.betControls button:disabled {
+    background-color: #777;
+    cursor: not-allowed;
+}

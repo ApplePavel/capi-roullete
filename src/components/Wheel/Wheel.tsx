@@ -1,22 +1,22 @@
-// Roulette.tsx
+// components/Wheel/Wheel.tsx
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsSlice';
-import Bets from './Bets/Bets';
-import Timer from './Timer/Timer';
-import { generateSpinPosition } from '../Roulette/random/generateposition';
-import { determineWinningSegment } from '../Roulette/random/determineWinningSegment';
-import SpinResults from './SpinResults/SpinResults';
-import styles from '../../styles/Roulette.module.css';
+import Bets from '../Roulette/Bets/Bets';
+import Timer from '../Roulette/Timer/Timer';
+import { generateSpinPosition } from './random/generateposition';
+import { determineWinningSegment } from './random/determineWinningSegment';
+import SpinResults from '../Roulette/SpinResults/SpinResults';
+import styles from '../../styles/Wheel.module.css';
 
-const TimerInSec = 7;
+const TimerInSec = 25;
 const spinDuration = 9000;
 
-const Roulette: React.FC = () => {
+const WheelF: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState(false);
-  const [spinPosition, setSpinPosition] = useState(6400);
+  const [spinPosition, setSpinPosition] = useState(1440);
   const [bet, setBet] = useState(0);
   const [betType, setBetType] = useState<string | null>(null);
 
@@ -34,7 +34,25 @@ const Roulette: React.FC = () => {
 
             if (betType) {
               const won = betType === winningSegment;
-              const winMultiplier = winningSegment === 'golden' ? 14 : 2;
+              let winMultiplier = 1;
+
+              switch (winningSegment) {
+                case 'x20':
+                  winMultiplier = 20;
+                  break;
+                case 'x5':
+                  winMultiplier = 5;
+                  break;
+                case 'x10':
+                  winMultiplier = 10;
+                  break;
+                case 'x3':
+                  winMultiplier = 3;
+                  break;
+                default:
+                  winMultiplier = 1;
+                  break;
+              }
 
               if (won) {
                 dispatch(incrementBalance(bet * winMultiplier));
@@ -43,7 +61,7 @@ const Roulette: React.FC = () => {
               }
             }
 
-            setSpinPosition(6400);
+            setSpinPosition(1440);
             setIsSpinning(false);
           }, spinDuration);
 
@@ -64,8 +82,8 @@ const Roulette: React.FC = () => {
     <div className={styles.container}>
       <div className={styles.roulette}>
         <div
-          className={styles.wheel}
-          style={{ backgroundPositionX: `${spinPosition}px` }}
+          className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}
+          style={{ transform: `rotate(${spinPosition}deg)` }}
         ></div>
       </div>
       <Bets bet={bet} setBet={setBet} betType={betType} handleBetTypeChange={setBetType} isSpinning={isSpinning} balance={balance} />
@@ -75,4 +93,4 @@ const Roulette: React.FC = () => {
   );
 };
 
-export default Roulette;
+export default WheelF;

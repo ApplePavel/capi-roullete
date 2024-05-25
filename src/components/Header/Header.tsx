@@ -13,6 +13,9 @@ const Header: React.FC = () => {
   return (
     <header className={styles.header}>
       <a href="/" className={styles.logo}></a>
+      <div>
+        <Link href="/wheel">Home</Link>
+      </div>
       <div className={styles.userInfo}>
         {!!user ? (
           <>
@@ -31,6 +34,7 @@ const Header: React.FC = () => {
           </Link>
         )}
       </div>
+    
     </header>
   );
 };
