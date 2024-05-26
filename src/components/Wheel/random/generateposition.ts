@@ -7,14 +7,15 @@ export const generateSpinPosition = async (): Promise<number[]> => {
   try {
     const result = await randomKEY.generateIntegers({ min: 1, max: 25, n: 1 });
     const randomNumber = result.random.data[0];
-    console.log(randomNumber);
-    const spinPosition = 1440 - 1065.4 - randomNumber * 14.4;
+    const slippagePosition = (Math.random() * 6) * (Math.random() < 0.5 ? -1 : 1);
+    const spinPosition = randomNumber * 14.4 - slippagePosition;
+    console.log(randomNumber)
     return [randomNumber, spinPosition];
   } catch (error) {
     console.error('Error generating random numbers:', error);
     const randomNumber = Math.floor(Math.random() * 25) + 1;
-    const spinPosition = 1440 - 1080 - randomNumber * 14.4;
-    console.log(randomNumber);
+    const slippagePosition = (Math.random() * 6) * (Math.random() < 0.5 ? -1 : 1);
+    const spinPosition = randomNumber * 14.4 - slippagePosition;
     return [randomNumber, spinPosition];
   }
 };

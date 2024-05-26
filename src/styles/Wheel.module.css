@@ -10,17 +10,15 @@
     background-color: rgb(39, 35, 38);
 }
   
-.roulette {
-}
-
 .wheel {
     width: 650px;
     height: 650px;
     background-image: url('../../public/wheel/wheel.png');
     background-repeat: repeat-x;
+    background-size: contain;
     position: relative;
     transition: 4s cubic-bezier(0.25, 1, 0.5, 1);
-
+    background-repeat: no-repeat;
 }
 
 .roulette::after {

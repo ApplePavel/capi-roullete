@@ -1,24 +1,22 @@
-// components/Wheel/Wheel.tsx
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsSlice';
-import Bets from '../Roulette/Bets/Bets';
-import Timer from '../Roulette/Timer/Timer';
+import Bets from '../Wheel/Bets/Bets';
+import Timer from '../Timer/Timer';
 import { generateSpinPosition } from './random/generateposition';
 import { determineWinningSegment } from './random/determineWinningSegment';
-import SpinResults from '../Roulette/SpinResults/SpinResults';
 import styles from '../../styles/Wheel.module.css';
 
-const TimerInSec = 25;
+const TimerInSec = 7;
 const spinDuration = 9000;
 
 const WheelF: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinPosition, setSpinPosition] = useState(1440);
   const [bet, setBet] = useState(0);
-  const [betType, setBetType] = useState<string | null>(null);
+  const [bets, setBets] = useState<{ [key: string]: number }>({});
 
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
@@ -31,38 +29,36 @@ const WheelF: React.FC = () => {
             dispatch(addSpin(randomNumber));
 
             const winningSegment = determineWinningSegment(randomNumber);
+            let winMultiplier = 1;
 
-            if (betType) {
-              const won = betType === winningSegment;
-              let winMultiplier = 1;
-
-              switch (winningSegment) {
-                case 'x20':
-                  winMultiplier = 20;
-                  break;
-                case 'x5':
-                  winMultiplier = 5;
-                  break;
-                case 'x10':
-                  winMultiplier = 10;
-                  break;
-                case 'x3':
-                  winMultiplier = 3;
-                  break;
-                default:
-                  winMultiplier = 1;
-                  break;
-              }
-
-              if (won) {
-                dispatch(incrementBalance(bet * winMultiplier));
-              } else {
-                dispatch(decrementBalance(bet));
-              }
+            switch (winningSegment) {
+              case 'x21':
+                winMultiplier = 21;
+                break;
+              case 'x6':
+                winMultiplier = 6;
+                break;
+              case 'x11':
+                winMultiplier = 11;
+                break;
+              case 'x4':
+                winMultiplier = 4;
+                break;
+              default:
+                winMultiplier = 2;
+                break;
             }
+
+            Object.keys(bets).forEach(betType => {
+              const betAmount = bets[betType];
+              if (betType === winningSegment) {
+                dispatch(incrementBalance(betAmount * winMultiplier));
+              }
+            });
 
             setSpinPosition(1440);
             setIsSpinning(false);
+            setBets({});
           }, spinDuration);
 
           setSpinPosition(spinPosition);
@@ -72,7 +68,7 @@ const WheelF: React.FC = () => {
           console.error('Error generating spin position:', error);
         });
     }
-  }, [isSpinning, bet, betType, dispatch]);
+  }, [isSpinning, bets, dispatch]);
 
   const handleTimerComplete = () => {
     setIsSpinning(true);
@@ -86,9 +82,8 @@ const WheelF: React.FC = () => {
           style={{ transform: `rotate(${spinPosition}deg)` }}
         ></div>
       </div>
-      <Bets bet={bet} setBet={setBet} betType={betType} handleBetTypeChange={setBetType} isSpinning={isSpinning} balance={balance} />
+      <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
       {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
-      <SpinResults />
     </div>
   );
 };

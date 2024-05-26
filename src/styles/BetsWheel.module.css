@@ -1,0 +1,78 @@
+.betsContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #20232a;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+  .balanceContainer {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .betInput {
+    width: 80px;
+    padding: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+  
+  .maxButton,
+  .clearButton {
+    padding: 5px 10px;
+    margin-left: 5px;
+  }
+  
+  .buttonsContainer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .betButton {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #282c34;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  
+  .imageContainer {
+    margin-bottom: 10px;
+  }
+  
+  .winMultiplier {
+    font-size: 14px;
+    color: white;
+  }
+  
+  .additionalButtons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+  
+  .betAdjustButton {
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background: #282c34;
+    color: white;
+    cursor: pointer;
+    margin: 5px;
+    transition: background 0.3s;
+  }
+  
+  .betAdjustButton:hover {
+    background: #61dafb;
+  }
+  

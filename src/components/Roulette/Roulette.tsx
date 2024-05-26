@@ -5,7 +5,7 @@ import { RootState } from '../../store/store';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsSlice';
 import Bets from './Bets/Bets';
-import Timer from './Timer/Timer';
+import Timer from '../Timer/Timer';
 import { generateSpinPosition } from '../Roulette/random/generateposition';
 import { determineWinningSegment } from '../Roulette/random/determineWinningSegment';
 import SpinResults from './SpinResults/SpinResults';
