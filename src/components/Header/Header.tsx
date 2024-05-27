@@ -8,13 +8,13 @@ import { RootState } from '../../store/store';
 const Header: React.FC = () => {
   const { user } = useUser();
   const defaultPicture = "/img/defaultAvatar/defAv.jpg";
-  const balance = useSelector((state: RootState) => state.balance.balance); // получаем баланс из состояния
+  const balance = useSelector((state: RootState) => state.balance.balance);
 
   return (
     <header className={styles.header}>
       <a href="/" className={styles.logo}></a>
       <div>
-        <Link href="/wheel">Home</Link>
+        <Link href="/wheel">Wheel</Link>
       </div>
       <div className={styles.userInfo}>
         {!!user ? (

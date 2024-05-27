@@ -1,4 +1,3 @@
-// Roulette.tsx
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
@@ -18,6 +17,7 @@ const Roulette: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const [spinPosition, setSpinPosition] = useState(6400);
   const [bet, setBet] = useState(0);
+  const [bets, setBets] = useState<{ [key: string]: number }>({});
   const [betType, setBetType] = useState<string | null>(null);
 
   const balance = useSelector((state: RootState) => state.balance.balance);
@@ -32,17 +32,19 @@ const Roulette: React.FC = () => {
 
             const winningSegment = determineWinningSegment(randomNumber);
 
-            if (betType) {
+            Object.keys(bets).forEach(betType => {
+              const betAmount = bets[betType];
               const won = betType === winningSegment;
               const winMultiplier = winningSegment === 'golden' ? 14 : 2;
 
               if (won) {
-                dispatch(incrementBalance(bet * winMultiplier));
+                dispatch(incrementBalance(betAmount * winMultiplier));
               } else {
-                dispatch(decrementBalance(bet));
+                dispatch(decrementBalance(betAmount));
               }
-            }
+            });
 
+            setBets({}); // Сброс ставок после завершения раунда
             setSpinPosition(6400);
             setIsSpinning(false);
           }, spinDuration);
@@ -54,7 +56,7 @@ const Roulette: React.FC = () => {
           console.error('Error generating spin position:', error);
         });
     }
-  }, [isSpinning, bet, betType, dispatch]);
+  }, [isSpinning, bets, dispatch]);
 
   const handleTimerComplete = () => {
     setIsSpinning(true);
@@ -68,7 +70,7 @@ const Roulette: React.FC = () => {
           style={{ backgroundPositionX: `${spinPosition}px` }}
         ></div>
       </div>
-      <Bets bet={bet} setBet={setBet} betType={betType} handleBetTypeChange={setBetType} isSpinning={isSpinning} balance={balance} />
+      <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
       {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
       <SpinResults />
     </div>

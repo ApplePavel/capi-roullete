@@ -1,17 +1,70 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { useUser } from '@auth0/nextjs-auth0/client';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../../store/store';
+import { decrementBalance } from '../../../store/balanceSlice';
 import styles from '../../../styles/Bets.module.css';
 
 interface BetsProps {
   bet: number;
   setBet: (bet: number) => void;
-  betType: string | null;
-  handleBetTypeChange: (betType: string) => void;
+  bets: { [key: string]: number };
+  setBets: (bets: { [key: string]: number }) => void;
   isSpinning: boolean;
-  balance: number;
 }
 
-const Bets: React.FC<BetsProps> = ({ bet, setBet, betType, handleBetTypeChange, isSpinning, balance }) => {
+const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
+  const { user } = useUser();
+  const balance = useSelector((state: RootState) => state.balance.balance);
+  const dispatch = useDispatch();
+  const [roundComplete, setRoundComplete] = useState(false);
+
+  const handleBet = (betType: string) => {
+    if (balance >= bet) {
+      const newBets = { ...bets, [betType]: (bets[betType] || 0) + bet };
+      setBets(newBets);
+      dispatch(decrementBalance(bet));
+      setRoundComplete(false);
+    } else {
+      setBet(balance);
+    }
+  };
+
+  const calculateTotalBet = (type: string) => {
+    return bets[type] || 0;
+  };
+
+  const renderButtonWithBets = (type: string, imageSrc: string, multiplier: string) => {
+    const totalBet = calculateTotalBet(type);
+    return (
+      <button
+        className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
+        onClick={() => handleBet(type)}
+        disabled={isSpinning || bet <= 0}
+      >
+        <div className={styles.imageContainer}>
+          <Image src={imageSrc} width={50} height={50} alt={type} />
+          {totalBet > 0 && !roundComplete && (
+            <div className={styles.betInfo}>
+              <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={25} width={25} alt="User Picture" />
+              <span>{totalBet}</span>
+            </div>
+          )}
+        </div>
+        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
+      </button>
+    );
+  };
+
+  useEffect(() => {
+    if (isSpinning) {
+      setRoundComplete(false);
+    } else {
+      setRoundComplete(true);
+    }
+  }, [isSpinning]);
+
   return (
     <div className={styles.betsContainer}>
       <div className={styles.balanceContainer}>
@@ -29,39 +82,11 @@ const Bets: React.FC<BetsProps> = ({ bet, setBet, betType, handleBetTypeChange, 
         <button onClick={() => setBet(bet * 2)} disabled={isSpinning} className={styles.betAdjustButton}>x2</button>
         <button onClick={() => setBet(balance)} disabled={isSpinning} className={styles.betAdjustButton}>MAX</button>
         <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
-        
       </div>
       <div className={styles.buttonsContainer}>
-        <button
-          className={`${styles.betButton} ${betType === 'black' ? styles.selected : ''}`}
-          onClick={() => handleBetTypeChange('black')}
-          disabled={isSpinning}
-        >
-          <div className={styles.imageContainer}>
-            <Image src="/icons/black.png" width={50} height={50} alt="Black Bet" />
-          </div>
-          <span className={styles.winMultiplier}>WIN 2x</span>
-        </button>
-        <button
-          className={`${styles.betButton} ${betType === 'yellow' ? styles.selected : ''}`}
-          onClick={() => handleBetTypeChange('yellow')}
-          disabled={isSpinning}
-        >
-          <div className={styles.imageContainer}>
-            <Image src="/icons/yellow.png" width={50} height={50} alt="Yellow Bet" />
-          </div>
-          <span className={styles.winMultiplier}>WIN 2x</span>
-        </button>
-        <button
-          className={`${styles.betButton} ${betType === 'golden' ? styles.selected : ''}`}
-          onClick={() => handleBetTypeChange('golden')}
-          disabled={isSpinning}
-        >
-          <div className={styles.imageContainer}>
-            <Image src="/icons/golden.png" width={50} height={50} alt="Golden Bet" />
-          </div>
-          <span className={styles.winMultiplier}>WIN 14x</span>
-        </button>
+        {renderButtonWithBets('black', '/icons/black.png', '2x')}
+        {renderButtonWithBets('yellow', '/icons/yellow.png', '2x')}
+        {renderButtonWithBets('golden', '/icons/golden.png', '14x')}
       </div>
     </div>
   );

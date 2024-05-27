@@ -1,5 +1,5 @@
 
-import styles from '../../styles/Roulette.module.css';
+import styles from '../../styles/Header.module.css';
 import WheelF from "../../components/Wheel/Wheel";
 import Header from '../../components/Header/Header';
 

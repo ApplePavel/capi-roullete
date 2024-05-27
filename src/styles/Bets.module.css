@@ -45,9 +45,7 @@
   transition: background 0.3s;
 }
 
-.betButton.selected {
-  background: #61dafb;
-}
+
 
 .imageContainer {
   margin-bottom: 10px;

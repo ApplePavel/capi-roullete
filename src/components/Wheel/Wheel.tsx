@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
+import {incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsSlice';
 import Bets from '../Wheel/Bets/Bets';
 import Timer from '../Timer/Timer';
