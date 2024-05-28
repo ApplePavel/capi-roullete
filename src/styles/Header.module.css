@@ -1,87 +1,113 @@
+.logo {
+  display: block;
+  width: 400px;
+  height: 70px;
+  background: url('../../public/icons/capibara.png') no-repeat;
+  background-size: contain;
+  transition: all 0.3s ease;
+}
+
+.login {
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+  color: #ffffff;
+  background: #009500;
+  border-radius: 15px;
+  border: 2px solid #FFC025;
+  width: 150px;
+  height: 35px;
+  transition: all 0.7s ease;
+  background-image: url('../../public/icons/login.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 5px 50%;
+  cursor: pointer;
+}
+
+.logout {
+  font-weight: bold;
+  font-size: 8px;
+  text-align: center;
+  background: #ea2e32;
+  color: #ffffff;
+  border-radius: 15px;
+  border: 2px solid #FFC025;
+  width: 40px;
+  height: 35px;
+  transition: all 0.7s ease;
+  background-image: url('../../public/icons/logout.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 5px 50%;
+  cursor: pointer;
+}
+
+
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #1a1a1a; 
-    color: #ffffff;
-    background-image: url('../../public/icons/background.jpg');
-    background-size:cover;
-    background-repeat: no-repeat;
-  }
-  
-  .logo{
-    height: 80px;
-    width: 650px;
-    background: url('../../public/icons/capibara.png') no-repeat;
-    background-size: contain;
-    transition: all .3s ease;
-  }
+  display: flex;
 
-  .userInfo {
-    display: flex;
-    align-items: center;
-  }
-  
-  .userProfile {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .userName {
-    margin-left: 10px;
-    font-size: 1rem;
-  }
-  
-  .link {
-    margin-left: 20px;
-    color: #ffffff;
-    text-decoration: none;
-  }
-  
-  .link:hover {
-    text-decoration: underline;
-  }
-  
-  .login{
-    font-weight: bold;
-    font-size: 16px;
-    text-align: center;
-    color: #000000;
+  align-items: center;
+  padding: 10px 20px;
+  color: #ffffff;
+  background: #191924;
+}
 
-    border-radius: 15px;
-    border: 3px solid #FFC025;
+.logo_container {
+  border-right: 5px solid black;
+}
 
-    width: 150px;
-    height: 35px;
-    transition: all .7s ease;
-    background-image: url("../../public/icons/login.png");
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    background-position: 5px 50%;
-    cursor: pointer;
-  }
+.userInfo {
+  display: flex;
+  align-items: center;
+  background-color: #1c1c1c;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
 
-  .loginGuest:hover{
-    background-color: #FFC025;
-  }
-  
-  .logout{
-    font-weight: bold;
-    font-size: 8px;
-    text-align: center;
-    color: #000000;
+.telegram {
+  margin-right: 20px;
+}
 
-    border-radius: 15px;
-    border: 3px solid #FFC025;
+.head{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+    font-size: 12px;
+}
 
-    width: 40px;
-    height: 35px;
-    transition: all .7s ease;
-    background-image: url("../../public/icons/logout.png");
-    background-size: 30px 30px;
-    background-repeat: no-repeat;
-    background-position: 5px 50%;
-    cursor: pointer;
-  }
+
+.bot_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.section__list {
+  list-style: none;
+
+  display: flex;
+  margin: 0;
+  padding: 0;
+
+}
+
+.section__list li {
+  color: #fff;
+  font-weight: 600;
+  font-size: 12px;
+  color: #6e6e8c;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.section__list li:hover {
+  color: #ccc;
+}
+
+.loginGuest:hover {
+  background-color: #FFC025;
+}
+
