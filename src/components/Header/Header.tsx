@@ -35,16 +35,24 @@ const Header: React.FC = () => {
             <Link href="/wheel">
               <Image
                 src="/wheel/wheel.png"
-                width={65}
-                height={65}
+                width={55}
+                height={55}
                 alt="Wheel"
               />
             </Link>
             <Link href="/">
               <Image
                 src="/icons/golden.png"
-                width={65}
-                height={65}
+                width={55}
+                height={55}
+                alt="Roulette"
+              />
+            </Link>
+            <Link href="/hilo">
+              <Image
+                src="/hilo/hilo.png"
+                width={35}
+                height={45}
                 alt="Roulette"
               />
             </Link>
@@ -61,12 +69,18 @@ const Header: React.FC = () => {
                 </div>
                 <div className={styles.balance}>Balance: ${balance}</div>
                 <Link href="/api/auth/logout" className={styles.link}>
-                  <button className={styles.logout}></button>
+                  <button className={styles.logout}>
+                    <Image src={'/icons/logout.svg'} width={17} height={17} alt="Logout" className={styles.sign}></Image>
+                    <div className={styles.text}>Logout</div>
+                  </button>
                 </Link>
               </>
             ) : (
               <Link href="/api/auth/login" className={styles.link}>
-                <button className={styles.login}>Login</button>
+                <button className={styles.login}>
+                    <Image src={'/icons/login.svg'} width={17} height={17} alt="Logout" className={styles.sign}></Image>
+                    <div className={styles.text}>Login</div>
+                  </button>
               </Link>
             )}
 

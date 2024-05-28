@@ -5,7 +5,7 @@ import Header from '../../components/Header/Header';
 
 const Wheel: React.FC = () => {
   return (
-    <div className={styles.container}>
+    <div>
       <Header></Header>
       <Hilo></Hilo>
     </div>

@@ -70,7 +70,6 @@ const Hilo: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.HiLo}>
         <div className={`${styles.HiLo}`}>
           {spinResult && (
             <div>
@@ -81,7 +80,6 @@ const Hilo: React.FC = () => {
             </div>
           )}
         </div>
-      </div>
       <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
       {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
     </div>

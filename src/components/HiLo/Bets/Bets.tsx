@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, CSSProperties } from 'react';
 import Image from 'next/image';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import { useSelector, useDispatch } from 'react-redux';
@@ -35,7 +35,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
     return bets[type] || 0;
   };
 
-  const renderButtonWithBets = (type: string, imageSrc: string, multiplier: string) => {
+  const renderButtonWithBets = (type: string, text: string, multiplier: string, buttonstyle: string) => {
     const totalBet = calculateTotalBet(type);
     return (
       <button
@@ -43,8 +43,11 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         onClick={() => handleBet(type)}
         disabled={isSpinning || bet <= 0}
       >
+        <div className={styles[buttonstyle]}>
+          <div>{multiplier}</div>
+          <div>{text}</div>
+        </div>
         <div className={styles.imageContainer}>
-          <Image src={imageSrc} width={270} height={70} alt={type} />
           {totalBet > 0 && !roundComplete && (
             <div className={styles.betInfo}>
               <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={25} width={25} alt="User Picture" />
@@ -56,6 +59,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
       </button>
     );
   };
+
 
   useEffect(() => {
     if (isSpinning) {
@@ -85,13 +89,13 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
       </div>
       <div className={styles.buttonsContainer}>
-        {renderButtonWithBets('red', '/hilo/red.png', '2X')}
-        {renderButtonWithBets('black', '/hilo/black.png', '2X')}
-        {renderButtonWithBets('2_9', '/hilo/2_9.png', '1.5X')}
-        {renderButtonWithBets('JQKA', '/hilo/jqka.png', '3X')}
-        {renderButtonWithBets('KA', '/hilo/KA.png', '6X')}
-        {renderButtonWithBets('A', '/hilo/A.png', '12X')}
-        {renderButtonWithBets('Joker', '/icons/golden.png', '24X')}
+        {renderButtonWithBets('red', 'Красное', '2.00x', 'hilo_red')} 
+        {renderButtonWithBets('black', 'Черное', '2.00x', 'hilo_black')}
+        {renderButtonWithBets('2_9', '2-9', '1.5x', 'hilo_2_9')}
+        {renderButtonWithBets('JQKA', 'JQKA', '3.00x', 'hilo_jqka')}
+        {renderButtonWithBets('KA', 'KA', '6.00x', 'hilo_ka')}
+        {renderButtonWithBets('A', 'A', '12.00x', 'hilo_a')}
+        {renderButtonWithBets('Joker', 'Joker', '24.00x', 'hilo_joker')}
       </div>
     </div>
   );
