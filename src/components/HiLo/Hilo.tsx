@@ -21,6 +21,13 @@ const Hilo: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (!spinResult) {
+      setSpinResult({ winningSegment: 'Joker', YellowOrBlack: null });
+    }
+  }, []);
+
+
+  useEffect(() => {
     if (isSpinning) {
       generateNumber()
         .then(([randomNumber, YellowOrBlack]) => {
@@ -79,13 +86,13 @@ const Hilo: React.FC = () => {
         {spinResult && (
           <div
             className={
-              spinResult.YellowOrBlack === "YELLOW"
+              spinResult.YellowOrBlack === "YELLOW" || "JOKER"
                 ? styles.yellowText
                 : styles.blackText
             }
           >
             <span className={styles.NumTop}>{spinResult.winningSegment}</span>
-            {spinResult.winningSegment === "joker" ? (
+            {spinResult.winningSegment === "Joker" ? (
               <Image
                 src="/icons/golden.png"
                 width={100}
