@@ -44,10 +44,14 @@
     border: none;
     background: #26375f;
     cursor: pointer;
-
+    font-family: var(--font-family);
+    font-size: 18px;
+    margin: 0 5px;
     transition: .1s linear;
   }
   
+
+
   .betButton:disabled{
     color: white;
   }
@@ -87,14 +91,16 @@
     background: #61dafb;
   }
   
-  .hilo_red{
-    background-color: rgb(236, 75, 63);
+  .hilo_yellow{
+    background-color: #FFCC38;
   }
   .hilo_black{
     background-color: rgb(53, 57, 66);
   }
   .hilo_joker{
-    background-color: #FFCC38;
+    background-color: #2bff00;
+    color: black !important;
+    font-weight: 600;
   }
 
   

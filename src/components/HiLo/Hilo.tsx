@@ -22,10 +22,17 @@ const Hilo: React.FC = () => {
 
   useEffect(() => {
     if (!spinResult) {
-      setSpinResult({ winningSegment: 'Joker', YellowOrBlack: null });
+      generateNumber()
+        .then(([randomNumber, YellowOrBlack]) => {
+          const winningSegment = determineWinningSegment(randomNumber);
+          setSpinResult({ winningSegment, YellowOrBlack });
+        })
+        .catch((error) => {
+          console.error("Error generating initial spin position:", error);
+          setSpinResult({ winningSegment: 'Joker', YellowOrBlack: null });
+        });
     }
-  }, []);
-
+  }, [spinResult]);
 
   useEffect(() => {
     if (isSpinning) {
@@ -86,7 +93,7 @@ const Hilo: React.FC = () => {
         {spinResult && (
           <div
             className={
-              spinResult.YellowOrBlack === "YELLOW" || "JOKER"
+              spinResult.YellowOrBlack === "YELLOW" || spinResult.winningSegment === "Joker"
                 ? styles.yellowText
                 : styles.blackText
             }

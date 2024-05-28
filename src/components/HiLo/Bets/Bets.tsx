@@ -88,7 +88,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
       </div>
       <div className={styles.buttonsContainer}>
-        {renderButtonWithBets('red', 'Красное', '2.00x', 'hilo_red')} 
+        {renderButtonWithBets('red', 'Желтое', '2.00x', 'hilo_yellow')} 
         {renderButtonWithBets('black', 'Черное', '2.00x', 'hilo_black')}
         {renderButtonWithBets('2_9', '2-9', '1.5x', 'hilo_2_9')}
         {renderButtonWithBets('JQKA', 'J, Q, K, A', '3.00x', 'hilo_jqka')}
