@@ -37,15 +37,16 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
 
   const renderButtonWithBets = (type: string, text: string, multiplier: string, buttonstyle: string) => {
     const totalBet = calculateTotalBet(type);
+    const buttonClass = `${styles.betButton} ${styles[buttonstyle]} ${bets[type] ? styles.selected : ''}`;
     return (
       <button
-        className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
+        className={buttonClass}
         onClick={() => handleBet(type)}
         disabled={isSpinning || bet <= 0}
       >
-        <div className={styles[buttonstyle]}>
-          <div>{multiplier}</div>
+        <div>
           <div>{text}</div>
+          <div>{multiplier}</div>
         </div>
         <div className={styles.imageContainer}>
           {totalBet > 0 && !roundComplete && (
@@ -55,11 +56,9 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
             </div>
           )}
         </div>
-        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
       </button>
     );
   };
-
 
   useEffect(() => {
     if (isSpinning) {
@@ -92,8 +91,8 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         {renderButtonWithBets('red', 'Красное', '2.00x', 'hilo_red')} 
         {renderButtonWithBets('black', 'Черное', '2.00x', 'hilo_black')}
         {renderButtonWithBets('2_9', '2-9', '1.5x', 'hilo_2_9')}
-        {renderButtonWithBets('JQKA', 'JQKA', '3.00x', 'hilo_jqka')}
-        {renderButtonWithBets('KA', 'KA', '6.00x', 'hilo_ka')}
+        {renderButtonWithBets('JQKA', 'J, Q, K, A', '3.00x', 'hilo_jqka')}
+        {renderButtonWithBets('KA', 'K, A', '6.00x', 'hilo_ka')}
         {renderButtonWithBets('A', 'A', '12.00x', 'hilo_a')}
         {renderButtonWithBets('Joker', 'Joker', '24.00x', 'hilo_joker')}
       </div>

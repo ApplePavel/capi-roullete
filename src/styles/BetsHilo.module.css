@@ -42,13 +42,20 @@
     padding: 10px;
     border-radius: 10px;
     border: none;
-    background: #282c34;
+    background: #26375f;
     cursor: pointer;
-    transition: background 0.3s;
+
+    transition: .1s linear;
   }
   
-
+  .betButton:disabled{
+    color: white;
+  }
   
+  .betButton:hover{
+    transform: translateY(-6px);
+    
+  }
   
   .imageContainer {
     margin-bottom: 10px;
@@ -80,13 +87,14 @@
     background: #61dafb;
   }
   
-
   .hilo_red{
-    color: rgb(255, 255, 255);
-    background-color: rgb(255, 0, 0);
+    background-color: rgb(236, 75, 63);
+  }
+  .hilo_black{
+    background-color: rgb(53, 57, 66);
+  }
+  .hilo_joker{
+    background-color: #FFCC38;
   }
 
-  .hilo_black{
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
-  }
+  

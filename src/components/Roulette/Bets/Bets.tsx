@@ -43,6 +43,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         onClick={() => handleBet(type)}
         disabled={isSpinning || bet <= 0}
       >
+        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
         <div className={styles.imageContainer}>
           <Image src={imageSrc} width={50} height={50} alt={type} />
           {totalBet > 0 && !roundComplete && (
@@ -52,7 +53,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
             </div>
           )}
         </div>
-        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
+        
       </button>
     );
   };
