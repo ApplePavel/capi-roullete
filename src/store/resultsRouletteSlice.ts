@@ -1,7 +1,6 @@
-// resultsSlice.ts
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface ResultsState {
+interface RouletteResultsState {
   spins: number[];
   count: {
     yellow: number;
@@ -10,7 +9,7 @@ interface ResultsState {
   };
 }
 
-const initialState: ResultsState = {
+const initialState: RouletteResultsState = {
   spins: [],
   count: {
     yellow: 0,
@@ -19,8 +18,8 @@ const initialState: ResultsState = {
   },
 };
 
-const resultsSlice = createSlice({
-  name: 'results',
+const resultsRouletteSlice = createSlice({
+  name: 'resultsRoulette',
   initialState,
   reducers: {
     addSpin: (state, action: PayloadAction<number>) => {
@@ -39,8 +38,8 @@ const resultsSlice = createSlice({
   },
 });
 
-export const { addSpin } = resultsSlice.actions;
-export default resultsSlice.reducer;
+export const { addSpin } = resultsRouletteSlice.actions;
+export default resultsRouletteSlice.reducer;
 
 export const determineWinningSegment = (randomNumber: number): 'yellow' | 'black' | 'golden' => {
   if (randomNumber === 4) {

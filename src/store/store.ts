@@ -2,17 +2,19 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import balanceReducer from './balanceSlice';
-import resultsReducer from './resultsSlice';
+import resultsRouletteReducer from './resultsRouletteSlice';
+import resultsWheelReducer from './resultWheelSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['balance', 'results'], 
+  whitelist: ['balance', 'resultsRoulette', 'resultsWheel'],
 };
 
 const rootReducer = combineReducers({
   balance: balanceReducer,
-  results: resultsReducer,
+  resultsRoulette: resultsRouletteReducer,
+  resultsWheel: resultsWheelReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

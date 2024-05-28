@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
-import { addSpin } from '../../store/resultsSlice';
+import { addSpin } from '../../store/resultsRouletteSlice';
 import Bets from './Bets/Bets';
 import Timer from '../Timer/Timer';
 import { generateSpinPosition } from '../Roulette/random/generateposition';
@@ -18,9 +18,6 @@ const Roulette: React.FC = () => {
   const [spinPosition, setSpinPosition] = useState(6400);
   const [bet, setBet] = useState(0);
   const [bets, setBets] = useState<{ [key: string]: number }>({});
-  const [betType, setBetType] = useState<string | null>(null);
-
-  const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -44,7 +41,7 @@ const Roulette: React.FC = () => {
               }
             });
 
-            setBets({}); // Сброс ставок после завершения раунда
+            setBets({});
             setSpinPosition(6400);
             setIsSpinning(false);
           }, spinDuration);

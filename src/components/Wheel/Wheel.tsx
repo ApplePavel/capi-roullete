@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
 import {incrementBalance } from '../../store/balanceSlice';
-import { addSpin } from '../../store/resultsSlice';
+import { addWheelSpin } from '../../store/resultWheelSlice';
 import Bets from '../Wheel/Bets/Bets';
 import Timer from '../Timer/Timer';
 import { generateSpinPosition } from './random/generateposition';
@@ -26,7 +26,7 @@ const WheelF: React.FC = () => {
       generateSpinPosition()
         .then(([randomNumber, spinPosition]) => {
           const timer = setTimeout(() => {
-            dispatch(addSpin(randomNumber));
+            dispatch(addWheelSpin(randomNumber));
 
             const winningSegment = determineWinningSegment(randomNumber);
             let winMultiplier = 1;

@@ -11,8 +11,8 @@
 }
   
 .wheel {
-    width: 650px;
-    height: 650px;
+    width: 500px;
+    height: 500px;
     background-image: url('../../public/wheel/wheel.png');
     background-repeat: repeat-x;
     background-size: contain;

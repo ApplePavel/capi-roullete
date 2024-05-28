@@ -1,4 +1,3 @@
-// SpinResults.tsx
 import React from 'react';
 import Image from 'next/image';
 import { useSelector } from 'react-redux';
@@ -7,7 +6,7 @@ import styles from '../../../styles/SpinResults.module.css';
 import { determineWinningSegment } from '../random/determineWinningSegment';
 
 const SpinResults: React.FC = () => {
-  const { spins, count } = useSelector((state: RootState) => state.results);
+  const { spins, count } = useSelector((state: RootState) => state.resultsRoulette);
 
   return (
     <div className={styles.container}>
@@ -23,7 +22,7 @@ const SpinResults: React.FC = () => {
           <Image src="/icons/yellow.png" width={35} height={35} alt="Yellow"></Image>{count.yellow}
         </div>
         <div className={styles.statItem}>
-        <Image src="/icons/black.png" width={35} height={35} alt="Black"></Image>{count.black}
+          <Image src="/icons/black.png" width={35} height={35} alt="Black"></Image>{count.black}
         </div>
         <div className={styles.statItem}>
           <Image src="/icons/golden.png" width={35} height={35} alt="Golden"></Image>{count.golden}
