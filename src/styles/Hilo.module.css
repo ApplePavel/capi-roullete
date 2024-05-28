@@ -7,19 +7,20 @@
   }
   
   .HiLo {
-    width: 300px;
-    height: 400px;
+    width: 165px;
+    height: 246px;
     display: flex;
+    color:#000000;
     justify-content: center;
     align-items: center;
-    background-color: #1c1c1c;
-    border-radius: 10px;
-    margin-bottom: 20px;
     position: relative;
+    background-image: url('../../public/icons/cards.svg');
+    background-repeat: no-repeat;
+    background-position: center;
   }
   
   .HiLo.spinning {
-    animation: spin 2s linear infinite;
+    animation: spin 2s linear ;
   }
   
   @keyframes spin {
@@ -28,3 +29,18 @@
     }
   }
   
+  .NumBot{
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding: 20px;
+    font-size: 45px;
+  }
+
+  .NumTop{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 20px;
+    font-size: 45px;
+  }

@@ -4,7 +4,7 @@ import { useUser } from '@auth0/nextjs-auth0/client';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../../store/store';
 import { decrementBalance } from '../../../store/balanceSlice';
-import styles from '../../../styles/BetsWheel.module.css';
+import styles from '../../../styles/BetsHilo.module.css';
 
 interface BetsProps {
   bet: number;
@@ -44,7 +44,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         disabled={isSpinning || bet <= 0}
       >
         <div className={styles.imageContainer}>
-          <Image src={imageSrc} width={50} height={50} alt={type} />
+          <Image src={imageSrc} width={270} height={70} alt={type} />
           {totalBet > 0 && !roundComplete && (
             <div className={styles.betInfo}>
               <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={25} width={25} alt="User Picture" />
@@ -85,11 +85,13 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
         <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
       </div>
       <div className={styles.buttonsContainer}>
-        {renderButtonWithBets('x2', '/icons/1.jpg', '2X')}
-        {renderButtonWithBets('x4', '/icons/3.jpg', '4X')}
-        {renderButtonWithBets('x6', '/icons/5.jpg', '6X')}
-        {renderButtonWithBets('x11', '/icons/10.jpg', '11X')}
-        {renderButtonWithBets('x21', '/icons/20.jpg', '21X')}
+        {renderButtonWithBets('red', '/hilo/red.png', '2X')}
+        {renderButtonWithBets('black', '/hilo/black.png', '2X')}
+        {renderButtonWithBets('2_9', '/hilo/2_9.png', '1.5X')}
+        {renderButtonWithBets('JQKA', '/hilo/jqka.png', '3X')}
+        {renderButtonWithBets('KA', '/hilo/KA.png', '6X')}
+        {renderButtonWithBets('A', '/hilo/A.png', '12X')}
+        {renderButtonWithBets('Joker', '/icons/golden.png', '24X')}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { incrementBalance } from '../../store/balanceSlice';
-import Bets from '../Wheel/Bets/Bets';
+import Bets from './Bets/Bets';
 import Timer from '../Timer/Timer';
 import { generateNumber } from './random/generateNumber';
 import { determineWinningSegment } from './random/determineWinningSegment';
@@ -22,50 +22,35 @@ const Hilo: React.FC = () => {
         .then(([randomNumber, RedOrBlack]) => {
           const winningSegment = determineWinningSegment(randomNumber);
           const timer = setTimeout(() => {
-            let winMultiplier = 1;
-
-            switch (winningSegment) {
-              case 'joker':
-                winMultiplier = 24;
-                break;
-              case 'A':
-                winMultiplier = 12;
-                break;
-              case 'K':
-              case 'A':
-                winMultiplier = 6;
-                break;
-              case 'J':
-              case 'Q':
-                winMultiplier = 3;
-                break;
-              case '2':
-              case '3':
-              case '4':
-              case '5':
-              case '6':
-              case '7':
-              case '8':
-              case '9':
-                winMultiplier = 1.5;
-                break;
-              case 'Black':
-              case 'Red':
-                winMultiplier = 2;
-                break;
+            let totalWin = 0;
+  
+            if (winningSegment === 'joker') {
+              totalWin += (bets['joker'] || 0) * 24;
+            } else {
+              if (winningSegment === 'A') {
+                totalWin += (bets['A'] || 0) * 12;
+                totalWin += (bets['KA'] || 0) * 6;
+                totalWin += (bets['JQKA'] || 0) * 3;
+              } else if (winningSegment === 'K') {
+                totalWin += (bets['KA'] || 0) * 6;
+                totalWin += (bets['JQKA'] || 0) * 3;
+              } else if (['J', 'Q'].includes(winningSegment)) {
+                totalWin += (bets['JQKA'] || 0) * 3;
+              } else if (['2', '3', '4', '5', '6', '7', '8', '9'].includes(winningSegment)) {
+                totalWin += (bets['2_9'] || 0) * 1.5;
+              }
+              
+              if (RedOrBlack) {
+                totalWin += (bets[RedOrBlack.toLowerCase()] || 0) * 2;
+              }
             }
 
-            Object.keys(bets).forEach(betType => {
-              const betAmount = bets[betType];
-              if (betType === winningSegment) {
-                dispatch(incrementBalance(betAmount * winMultiplier));
-              }
-            });
-
+            dispatch(incrementBalance(totalWin));
+  
             setBets({});
             setIsSpinning(false);
           }, TimerInSec * 1000);
-
+  
           setSpinResult({ winningSegment, RedOrBlack });
           return () => clearTimeout(timer);
         })
@@ -75,6 +60,9 @@ const Hilo: React.FC = () => {
         });
     }
   }, [isSpinning, bets, dispatch]);
+  
+  
+  
 
   const handleTimerComplete = () => {
     setIsSpinning(true);
@@ -86,7 +74,9 @@ const Hilo: React.FC = () => {
         <div className={`${styles.HiLo}`}>
           {spinResult && (
             <div>
-              <p>Number: {spinResult.winningSegment}</p>
+              <span className={styles.NumTop}>{spinResult.winningSegment}</span>
+              <span className={styles.NumBot}>{spinResult.winningSegment}</span>
+
               {spinResult.RedOrBlack && <p>Color: {spinResult.RedOrBlack}</p>}
             </div>
           )}
