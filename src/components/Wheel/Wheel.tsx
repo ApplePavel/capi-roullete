@@ -83,7 +83,7 @@ const WheelF: React.FC = () => {
         ></div>
       </div>
       <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
-      {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
+      <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
     </div>
   );
 };

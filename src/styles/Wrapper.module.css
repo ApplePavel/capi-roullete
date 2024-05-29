@@ -1,0 +1,12 @@
+.wrapper{
+    padding: 0px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100vw;;
+    background:
+    linear-gradient(rgb(10, 17, 25), rgba(10, 17, 25, 0.774)), 
+    url('../../public/roullete/wallpaper.jpg');
+    background-size:cover;
+    height: 100vh;
+  }

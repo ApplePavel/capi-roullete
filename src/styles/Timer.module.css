@@ -10,7 +10,7 @@
   .timerBar {
     height: 20px;
     background-color: #4caf50;
-    transition: width 1s linear;
+    transition: 1.1s linear;
   }
   
   .timerText {

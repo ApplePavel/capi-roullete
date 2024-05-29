@@ -133,9 +133,7 @@ const Hilo: React.FC = () => {
         setBets={setBets}
         isSpinning={isSpinning}
       />
-      {!isSpinning && (
-        <Timer duration={TimerInSec} onComplete={handleTimerComplete} />
-      )}
+              <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
     </div>
   );
 };

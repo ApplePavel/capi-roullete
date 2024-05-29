@@ -5,7 +5,7 @@ import Roulette from '../components/Roulette/Roulette';
 import Bets from '../components/Roulette/Bets/Bets';
 import SpinResults from '../components/Roulette/SpinResults/SpinResults';
 import Timer from '../components/Timer/Timer';
-import styles from '../styles/Roulette.module.css'
+import styles from '../styles/Roulette.module.css';
 
 const TimerInSec = 7;
 
@@ -14,15 +14,9 @@ const Home: React.FC = () => {
   const [bets, setBets] = useState<{ [key: string]: number }>({});
   const [isSpinning, setIsSpinning] = useState(false);
 
-  const handleTimerComplete = () => {
-    setIsSpinning(true);
-  };
-
   return (
-    <div>
-      <Header />
-      <div className={styles.wrapper}>
-        {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
+    <div className={styles.container}>
+        <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
         <Roulette
           bet={bet}
           setBet={setBet}
@@ -38,9 +32,8 @@ const Home: React.FC = () => {
           setBets={setBets}
           isSpinning={isSpinning}
         />
-        
         <SpinResults />
-      </div>
+
     </div>
   );
 };

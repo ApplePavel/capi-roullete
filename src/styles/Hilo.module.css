@@ -6,7 +6,6 @@
   justify-content: center;
   width: 100%;
   overflow: hidden;
-  background-color: rgb(39, 35, 38);
 }
 
   
@@ -25,7 +24,7 @@
   }
   
   .HiLo.spinning {
-    animation: spin 2s linear ;
+    animation: spin 0.5s linear ;
   }
   
   @keyframes spin {

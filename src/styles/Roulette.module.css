@@ -1,11 +1,11 @@
 .container {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-  
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
   }
   
   .roulette {
@@ -28,12 +28,12 @@
 
 .roulette::before {
   left: -20px;
-  background: linear-gradient(90deg, rgb(10, 17, 33) 29.76%, rgba(10, 17, 25, 0) 100%)
+  background: linear-gradient(90deg, rgb(10, 17, 35) 29.76%, rgba(10, 17, 25, 0) 100%)
 }
 
 .roulette::after {
   right: -20px;
-  background: linear-gradient(-90deg, rgb(10, 17, 33) 29.76%, rgba(10, 17, 25, 0) 100%);
+  background: linear-gradient(-90deg, rgb(10, 17, 35) 29.76%, rgba(10, 17, 25, 0) 100%);
 }
   
 .wheel {
@@ -83,15 +83,4 @@
     cursor: not-allowed;
   }
   
-  .wrapper{
-    padding: 0px 80px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100vw;;
-    background:
-    linear-gradient(rgb(10, 17, 25), rgba(10, 17, 25, 0.877)), 
-    url('../../public/roullete/wallpaper.jpg');
-    background-size:cover;
-    height: 100vh;
-  }
+  
