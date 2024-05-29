@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spins {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spin {
+  margin: 5px 0;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
+
+.x21 {
+  background-color: #E50000;
+}
+
+.x11 {
+  background-color: #D95B9E;
+}
+
+.x6 {
+  background-color: #0085FF;
+}
+
+.x4 {
+  background-color: #00AB23;
+}
+
+.x2 {
+  background-color: #E6DA5E;
+}

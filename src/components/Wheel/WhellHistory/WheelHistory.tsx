@@ -1,9 +1,35 @@
-import React from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../store/store';
+import styles from '../../../styles/WheelHistory.module.css';
+import { determineWinningSegment } from '../random/determineWinningSegment';
 
-function WheelHistory() {
+const WheelHistory: React.FC = () => {
+  const { spins } = useSelector((state: RootState) => state.resultsWheel);
+
   return (
-    <div>WheelHistory</div>
-  )
-}
+    <div className={styles.container}>
+      <h2>Spin Results</h2>
+      <div className={styles.spins}>
+        {spins.slice(-11).map((spin, index) => {
+          const segment = determineWinningSegment(spin);
+          const width = segment === 'x21' ? 100 :
+                        segment === 'x11' ? 80 :
+                        segment === 'x6' ? 65 :
+                        segment === 'x4' ? 50 : 40;
 
-export default WheelHistory
+          return (
+            <div
+              key={index}
+              className={`${styles.spin} ${styles[segment]}`}
+              style={{ width: `${width}px` }}
+            >
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+export default WheelHistory;

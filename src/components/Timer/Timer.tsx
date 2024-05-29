@@ -38,7 +38,7 @@ const Timer: React.FC<TimerProps> = ({ duration, isSpinning, setIsSpinning }) =>
   return (
     <div className={styles.timerContainer}>
       <div className={styles.timerBar} style={{ width: `${widthPercentage}%` }}></div>
-      <span className={styles.timerText}>{seconds}.{milliseconds < 10 ? `0${milliseconds}` : milliseconds} seconds</span>
+      <span className={styles.timerText}>{seconds},{milliseconds < 10 ? `0${milliseconds}` : milliseconds} seconds</span>
     </div>
   );
 };

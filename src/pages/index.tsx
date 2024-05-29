@@ -1,6 +1,5 @@
 // Home.tsx
 import React, { useState } from 'react';
-import Header from '../components/Header/Header';
 import Roulette from '../components/Roulette/Roulette';
 import Bets from '../components/Roulette/Bets/Bets';
 import SpinResults from '../components/Roulette/SpinResults/SpinResults';

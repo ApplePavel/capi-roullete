@@ -86,16 +86,13 @@
 
 .header {
   display: flex;
-
   align-items: center;
   padding: 10px 20px;
   color: #ffffff;
-  background: #191924;
+
 }
 
-.logo_container {
-  border-right: 5px solid black;
-}
+
 
 .userInfo {
   display: flex;

@@ -46,15 +46,20 @@
 }
 
 .wheel::after {
-  content: '';
-  width: 5px;
-  height: 100px;
-  background: #fff;
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 3;
+    content: '';
+    rotate: 180deg;
+    width: 130px;
+    height: 130px;
+    background-image: url('../../public/icons/palmalone.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    position: absolute;
+    left: 0px;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+    margin: auto;
+    z-index: 1;
 }
   
   .controls {

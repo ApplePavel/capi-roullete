@@ -70,9 +70,6 @@ const WheelF: React.FC = () => {
     }
   }, [isSpinning, bets, dispatch]);
 
-  const handleTimerComplete = () => {
-    setIsSpinning(true);
-  };
 
   return (
     <div className={styles.container}>
