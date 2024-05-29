@@ -1,7 +1,7 @@
 export const determineWinningSegment = (randomNumber: number): string => {
-    if (randomNumber === 4) {
+    if (randomNumber === 7) {
       return 'golden';
-    } else if ([2, 5, 7, 9, 11, 13, 15,].includes(randomNumber)) {
+    } else if ([1, 3, 5, 8, 10, 12, 14].includes(randomNumber)) {
       return 'yellow';
     } else {
       return 'black';

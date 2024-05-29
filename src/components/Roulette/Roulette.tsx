@@ -1,23 +1,25 @@
+// Roulette.tsx
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../store/store';
+import { useDispatch } from 'react-redux';
 import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsRouletteSlice';
-import Bets from './Bets/Bets';
-import Timer from '../Timer/Timer';
 import { generateSpinPosition } from '../Roulette/random/generateposition';
 import { determineWinningSegment } from '../Roulette/random/determineWinningSegment';
-import SpinResults from './SpinResults/SpinResults';
 import styles from '../../styles/Roulette.module.css';
 
-const TimerInSec = 7;
+interface RouletteProps {
+  bet: number;
+  setBet: React.Dispatch<React.SetStateAction<number>>;
+  bets: { [key: string]: number };
+  setBets: React.Dispatch<React.SetStateAction<{ [key: string]: number }>>;
+  isSpinning: boolean;
+  setIsSpinning: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 const spinDuration = 9000;
 
-const Roulette: React.FC = () => {
-  const [isSpinning, setIsSpinning] = useState(false);
-  const [spinPosition, setSpinPosition] = useState(6400);
-  const [bet, setBet] = useState(0);
-  const [bets, setBets] = useState<{ [key: string]: number }>({});
+const Roulette: React.FC<RouletteProps> = ({ bet, setBet, bets, setBets, isSpinning, setIsSpinning }) => {
+  const [spinPosition, setSpinPosition] = useState(6650);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,7 +44,7 @@ const Roulette: React.FC = () => {
             });
 
             setBets({});
-            setSpinPosition(6400);
+            setSpinPosition(6650);
             setIsSpinning(false);
           }, spinDuration);
 
@@ -55,10 +57,6 @@ const Roulette: React.FC = () => {
     }
   }, [isSpinning, bets, dispatch]);
 
-  const handleTimerComplete = () => {
-    setIsSpinning(true);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.roulette}>
@@ -67,9 +65,6 @@ const Roulette: React.FC = () => {
           style={{ backgroundPositionX: `${spinPosition}px` }}
         ></div>
       </div>
-      <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
-      {!isSpinning && <Timer duration={TimerInSec} onComplete={handleTimerComplete} />}
-      <SpinResults />
     </div>
   );
 };
