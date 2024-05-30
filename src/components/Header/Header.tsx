@@ -5,6 +5,8 @@ import styles from "../../styles/Header.module.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
+export const runtime = 'edge';
+
 const Header: React.FC = () => {
   const { user } = useUser();
   const defaultPicture = "/img/defaultAvatar/defAv.jpg";
