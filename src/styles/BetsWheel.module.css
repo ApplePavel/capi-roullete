@@ -33,6 +33,9 @@
 
   }
 
+  .betButton:disabled{
+    color:white;
+  }
  
   
   .betButton {
@@ -45,7 +48,7 @@
     align-items: center;
     background: #282c34;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: 0.1s linear;;
     font-size: 26px;
   }
   
@@ -72,10 +75,15 @@
     background: #282c34;
     color: white;
     cursor: pointer;
-
-    transition: background 0.3s;
+ 
   }
   
+  
+  .betButton:hover{
+    transform: translateY(-6px);
+    
+  }
+
   .betAdjustButton:hover {
     background: #61dafb;
   }
