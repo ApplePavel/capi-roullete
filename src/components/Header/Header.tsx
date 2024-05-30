@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../store/store";
 
 const Header: React.FC = () => {
+  const { user } = useUser();
   const defaultPicture = "/img/defaultAvatar/defAv.jpg";
   const balance = useSelector((state: RootState) => state.balance.balance);
+  
 
   return (
     <header className={styles.header}>
@@ -28,43 +30,60 @@ const Header: React.FC = () => {
             />
           </Link>
           <Link href="/hilo" className={styles.game}>
-            <Image src="/icons/hilo.png" width={45} height={55} alt="Roulette" />
+            <Image
+              src="/icons/hilo.png"
+              width={45}
+              height={55}
+              alt="Roulette"
+            />
           </Link>
         </div>
 
         <div className={styles.right_header}>
-        <div className={styles.balance}>
-            <div className={styles.balance}>${balance}</div>
-          </div>
-        <div className={styles.userProfile}>
+      <div className={styles.balance}>
+        <div className={styles.balance}>${balance}</div>
+      </div>
+      <div className={styles.userProfile}>
+        {user ? (
+          <>
+            <div>
               <Image
-                src={"/defaultAvatar/defAv.jpg"}
+                src={user.picture ?? "/defaultPicture.jpg"}
                 height={50}
                 width={50}
                 alt="User Picture"
               />
-              <span className={styles.userName}></span>
+              <span className={styles.userName}>{user.name}</span>
             </div>
-          
-
-          <button className={styles.logout}>
-            <Image
-              src={"/icons/logout.svg"}
-              width={17}
-              height={17}
-              alt="Logout"
-              className={styles.sign}
-            ></Image>
-            <div className={styles.text}>Logout</div>
-          </button>
-
-          {/* <Link href="/api/auth/login" className={styles.link}>
-                <button className={styles.login}>
-                    <Image src={'/icons/login.svg'} width={17} height={17} alt="Logout" className={styles.sign}></Image>
-                    <div className={styles.text}>Login</div>
-                  </button>
-              </Link> */}
-        </div>
+            <Link href="/api/auth/logout" className={styles.link}>
+              <button className={styles.logout}>
+                <Image
+                  src="/icons/logout.svg"
+                  width={17}
+                  height={17}
+                  alt="Logout"
+                  className={styles.sign}
+                />
+                <div className={styles.text}>Logout</div>
+              </button>
+            </Link>
+          </>
+        ) : (
+          <Link href="/api/auth/login" className={styles.link}>
+            <button className={styles.login}>
+              <Image
+                src="/icons/login.svg"
+                width={17}
+                height={17}
+                alt="Login"
+                className={styles.sign}
+              />
+              <div className={styles.text}>Login</div>
+            </button>
+          </Link>
+        )}
+      </div>
+    </div>
       </div>
     </header>
   );

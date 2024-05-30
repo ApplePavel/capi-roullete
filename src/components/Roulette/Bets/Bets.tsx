@@ -18,6 +18,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
   const [roundComplete, setRoundComplete] = useState(false);
+  const { user } = useUser(); // Destructure user from useUser
 
   const handleBet = (betType: string) => {
     if (balance >= bet) {
@@ -34,42 +35,33 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
     return bets[type] || 0;
   };
 
-  const renderButtonWithBets = (
-    type: string,
-    imageSrc: string,
-    multiplier: string
-  ) => {
+  const renderButtonWithBets = (type: string, imageSrc: string, multiplier: string) => {
     const totalBet = calculateTotalBet(type);
-  return (
-    <div className={styles.betContainer}>
-      <button
-        className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
-        onClick={() => handleBet(type)}
-        disabled={isSpinning || bet <= 0}
-      >
-        <div className={styles.imageContainer}>
-          <Image src={imageSrc} width={50} height={50} alt={type} />
-        </div>
-        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
-      </button>
-      <div className={styles.betSceleton}>
-        <div className={styles.betInfo}>
-          {totalBet > 0 && !roundComplete && (
-            <>
-              <Image
-                src={"/defaultAvatar/defAv.jpg"}
-                height={50}
-                width={50}
-                alt="User Picture"
-              />
-              <div>{totalBet}</div>
-            </>
-          )}
+    return (
+      <div className={styles.betContainer}>
+        <button
+          className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
+          onClick={() => handleBet(type)}
+          disabled={isSpinning || bet <= 0}
+        >
+          <div className={styles.imageContainer}>
+            <Image src={imageSrc} width={50} height={50} alt={type} />
+          </div>
+          <span className={styles.winMultiplier}>PAYS {multiplier}</span>
+        </button>
+        <div className={styles.betSceleton}>
+          <div className={styles.betInfo}>
+            {totalBet > 0 && !roundComplete && (
+              <>
+                <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={50} width={50} alt="'/defaultAvatar/defAv.jpg" />
+                <div>{totalBet}</div>
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  };
 
   useEffect(() => {
     if (isSpinning) {
@@ -90,48 +82,12 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
           disabled={isSpinning}
           className={styles.betInput}
         />
-        <button
-          onClick={() => setBet(bet + 1)}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          +1
-        </button>
-        <button
-          onClick={() => setBet(bet + 5)}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          +5
-        </button>
-        <button
-          onClick={() => setBet(Math.floor(bet / 2))}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          1/2
-        </button>
-        <button
-          onClick={() => setBet(bet * 2)}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          x2
-        </button>
-        <button
-          onClick={() => setBet(balance)}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          MAX
-        </button>
-        <button
-          onClick={() => setBet(0)}
-          disabled={isSpinning}
-          className={styles.betAdjustButton}
-        >
-          CLEAR
-        </button>
+        <button onClick={() => setBet(bet + 1)} disabled={isSpinning} className={styles.betAdjustButton}>+1</button>
+        <button onClick={() => setBet(bet + 5)} disabled={isSpinning} className={styles.betAdjustButton}>+5</button>
+        <button onClick={() => setBet(Math.floor(bet / 2))} disabled={isSpinning} className={styles.betAdjustButton}>1/2</button>
+        <button onClick={() => setBet(bet * 2)} disabled={isSpinning} className={styles.betAdjustButton}>x2</button>
+        <button onClick={() => setBet(balance)} disabled={isSpinning} className={styles.betAdjustButton}>MAX</button>
+        <button onClick={() => setBet(0)} disabled={isSpinning} className={styles.betAdjustButton}>CLEAR</button>
       </div>
       <div className={styles.buttonsContainer}>
         {renderButtonWithBets("black", "/icons/black.png", "2x")}

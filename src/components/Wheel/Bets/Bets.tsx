@@ -15,10 +15,10 @@ interface BetsProps {
 }
 
 const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
-
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
   const [roundComplete, setRoundComplete] = useState(false);
+  const { user } = useUser(); 
 
   const handleBet = (betType: string) => {
     if (balance >= bet) {
@@ -53,12 +53,7 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
           <div className={styles.betInfo}>
             {totalBet > 0 && !roundComplete && (
               <>
-                <Image
-                  src={"/defaultAvatar/defAv.jpg"}
-                  height={50}
-                  width={50}
-                  alt="User Picture"
-                />
+                <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={50} width={50} alt="'/defaultAvatar/defAv.jpg" />
                 <div>{totalBet}</div>
               </>
             )}
