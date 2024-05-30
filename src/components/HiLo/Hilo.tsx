@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { incrementBalance } from "../../store/balanceSlice";
-import Bets from "./Bets/Bets";
-import Timer from "../Timer/Timer";
 import { generateNumber } from "./random/generateNumber";
 import { determineWinningSegment } from "./random/determineWinningSegment";
 import styles from "../../styles/Hilo.module.css";
@@ -10,10 +8,7 @@ import Image from "next/image";
 
 const TimerInSec = 7;
 
-const Hilo: React.FC = () => {
-  const [bet, setBet] = useState(0);
-  const [bets, setBets] = useState<{ [key: string]: number }>({});
-  const [isSpinning, setIsSpinning] = useState(false);
+const Hilo: React.FC<{ isSpinning: boolean; setIsSpinning: (isSpinning: boolean) => void; bets: { [key: string]: number }; setBets: (bets: { [key: string]: number }) => void; }> = ({ isSpinning, setIsSpinning, bets, setBets }) => {
   const [spinResult, setSpinResult] = useState<{
     winningSegment: string;
     YellowOrBlack: string | null;
@@ -81,14 +76,10 @@ const Hilo: React.FC = () => {
           setIsSpinning(false);
         });
     }
-  }, [isSpinning, bets, dispatch]);
-
-  const handleTimerComplete = () => {
-    setIsSpinning(true);
-  };
+  }, [isSpinning, bets, dispatch, setBets, setIsSpinning]);
 
   return (
-    <div className={styles.container}>
+    <div>
       <div className={styles.HiLo}>
         {spinResult && (
           <div
@@ -126,14 +117,6 @@ const Hilo: React.FC = () => {
           </div>
         )}
       </div>
-      <Bets
-        bet={bet}
-        setBet={setBet}
-        bets={bets}
-        setBets={setBets}
-        isSpinning={isSpinning}
-      />
-              <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
     </div>
   );
 };

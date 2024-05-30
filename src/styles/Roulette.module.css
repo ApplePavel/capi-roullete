@@ -4,16 +4,42 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  overflow: hidden;
+  margin-top: 70px;
   }
   
   .roulette {
     position: relative;
     width: 1200px;
     height: 100px;
-    overflow: hidden;
 
+
+  }
+
+
+  .wheel {
+    height: 100px;
+    background-image: url('../../public/roullete/rouletka.png');
+    background-size: cover;
+    background-repeat: repeat-x;
+    position: relative;
+    transition: background-position-x 7s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  
+  .wheel::after {
+      content: '';
+      rotate: 180deg;
+      width: 130px;
+      height: 130px;
+      background-image: url('../../public/icons/palmalone.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      position: absolute;
+      left: 0px;
+      right: 0;
+      top: 50px;
+      bottom: 0;
+      margin: auto;
+      z-index: 1;
   }
 
   .roulette::before,
@@ -28,39 +54,17 @@
 
 .roulette::before {
   left: -20px;
-  background: linear-gradient(90deg, rgb(10, 17, 35) 29.76%, rgba(10, 17, 25, 0) 100%)
+  border-radius: 10px;
+  background: linear-gradient(90deg, rgb(19, 25, 44) 29.76%, rgba(9, 15, 20, 0) 100%)
 }
 
 .roulette::after {
   right: -20px;
-  background: linear-gradient(-90deg, rgb(10, 17, 35) 29.76%, rgba(10, 17, 25, 0) 100%);
+  border-radius: 10px;
+  background: linear-gradient(-90deg, rgb(19, 25, 44) 29.76%, rgba(10, 17, 25, 0) 100%);
 }
   
-.wheel {
-  width: 1200px;
-  height: 100px;
-  background-image: url('../../public/roullete/rouletka.png');
-  background-repeat: repeat-x;
-  position: relative;
-  transition: background-position-x 7s cubic-bezier(0.25, 1, 0.5, 1);
-}
 
-.wheel::after {
-    content: '';
-    rotate: 180deg;
-    width: 130px;
-    height: 130px;
-    background-image: url('../../public/icons/palmalone.png');
-    background-size: contain;
-    background-repeat: no-repeat;
-    position: absolute;
-    left: 0px;
-    right: 0;
-    top: 50px;
-    bottom: 0;
-    margin: auto;
-    z-index: 1;
-}
   
   .controls {
     display: flex;

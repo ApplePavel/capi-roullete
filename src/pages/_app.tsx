@@ -1,6 +1,6 @@
 
 import { AppProps } from 'next/app';
-import { UserProvider } from '@auth0/nextjs-auth0/client';
+
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from '../store/store';
@@ -16,7 +16,6 @@ const montserrat = Montserrat({
 function MyApp({ Component, pageProps }: AppProps) {
   
   return (
-    <UserProvider>
       <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
           <div className={montserrat.className}>
@@ -26,7 +25,7 @@ function MyApp({ Component, pageProps }: AppProps) {
           </div>
         </PersistGate>
       </Provider>
-    </UserProvider>
+
   );
 }
 

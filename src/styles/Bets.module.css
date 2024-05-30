@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
+  width: 100%;
   padding: 20px;
   border-radius: 10px;
 }
@@ -35,26 +35,30 @@
 
 .betButton {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: center;
+  width: 100%;
   padding: 10px;
   border-radius: 10px;
   border: none;
   background: #282c34;
   cursor: pointer;
   transition: background 0.3s;
+  font-size: 26px;
 }
 
+.winMultiplier{
+  font-family: var(--font-family);
+  font-size: 28px;
+  color: white;
+  font-weight: 600;
+  
+}
 
 
 .imageContainer {
   margin-bottom: 10px;
 }
 
-.winMultiplier {
-  font-size: 14px;
-  color: white;
-}
 
 .additionalButtons {
   display: flex;
@@ -75,4 +79,23 @@
 
 .betAdjustButton:hover {
   background: #61dafb;
+}
+
+
+.betSceleton{
+  margin-top: 15px;
+  width: 30vw;
+  height: 70px;
+  padding: 10px;
+  border-radius: 10px;
+  background: #282c34;
+}
+
+.betInfo{
+  display: flex;
+  padding: 0 15px 0 5px;
+  justify-content: space-between;
+  font-size: 25px;
+  align-items: center;
+  transition: .3s linear
 }

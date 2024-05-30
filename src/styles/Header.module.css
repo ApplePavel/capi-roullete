@@ -1,11 +1,21 @@
 .logo {
   display: block;
-  width: 400px;
+  width: 370px;
   height: 70px;
   background: url('../../public/icons/capibara.png') no-repeat;
   background-size: contain;
   transition: all 0.3s ease;
 }
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.logo:active {
+  transform: scale(0.95);
+}
+
+
 
 
 .login{
@@ -83,13 +93,19 @@
 }
 
 
-
-.header {
-  display: flex;
-  align-items: center;
-  padding: 10px 20px;
-  color: #ffffff;
-
+.header{
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 70px;
+  background: rgba(12, 20, 28, 0.88);
+  backdrop-filter: blur(10px);
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  transition: width 200ms cubic-bezier(0, 0, 0.2, 1) 0ms;
+  will-change: width;
+  padding: 0px 80px 0px 70px;
+  width: 100%;
 }
 
 
@@ -107,18 +123,21 @@
 }
 
 .head{
+  margin-top: 5px;
   display: flex;
-  flex-direction: column;
-  width: 100%;
-    font-size: 12px;
+  justify-content: space-between;
+  font-size: 12px;
+}
+
+.left_header{
+  display: flex;
 }
 
 
-.bot_header {
+.right_header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
 }
 
 .section__list {
@@ -147,3 +166,34 @@
 .loginGuest:hover {
   background-color: #FFC025;
 }
+
+.balance{
+  display: flex;
+    align-items: center;
+    background: rgb(19, 26, 34);
+
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.left_header a{
+  margin:0 15px;
+}
+
+.right_header div{
+  margin: 0 15px;
+}
+
+.game{
+  transition: .1s linear;
+}
+
+.game:hover {
+  transform: scale(1.15);
+}
+
+.game:active {
+  transform: scale(0.95);
+}
+

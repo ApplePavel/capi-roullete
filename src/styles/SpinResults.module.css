@@ -18,7 +18,7 @@
 }
 
 .yellow {
-  background-color: yellow;
+  background-color: rgb(255, 255, 0);
 }
 
 .black {
@@ -26,7 +26,7 @@
 }
 
 .golden {
-  background-color: gold;
+  background-color: rgb(255, 187, 0);
 }
 
 .statistics {

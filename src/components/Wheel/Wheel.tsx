@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
-import {incrementBalance } from '../../store/balanceSlice';
+import { incrementBalance } from '../../store/balanceSlice';
 import { addWheelSpin } from '../../store/resultWheelSlice';
-import Bets from '../Wheel/Bets/Bets';
-import Timer from '../Timer/Timer';
 import { generateSpinPosition } from './random/generateposition';
 import { determineWinningSegment } from './random/determineWinningSegment';
 import styles from '../../styles/Wheel.module.css';
 
-const TimerInSec = 7;
 const spinDuration = 9000;
 
-const WheelF: React.FC = () => {
-  const [isSpinning, setIsSpinning] = useState(false);
+interface WheelFProps {
+  isSpinning: boolean;
+  setIsSpinning: (isSpinning: boolean) => void;
+  bets: { [key: string]: number };
+  setBets: (bets: { [key: string]: number }) => void;
+}
+
+const WheelF: React.FC<WheelFProps> = ({ isSpinning, setIsSpinning, bets, setBets }) => {
   const [spinPosition, setSpinPosition] = useState(1440);
-  const [bet, setBet] = useState(0);
-  const [bets, setBets] = useState<{ [key: string]: number }>({});
 
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
@@ -70,17 +71,14 @@ const WheelF: React.FC = () => {
     }
   }, [isSpinning, bets, dispatch]);
 
-
   return (
     <div className={styles.container}>
-      <div className={styles.roulette}>
+        <div className={styles.wheelcontainer}>
         <div
           className={`${styles.wheel} ${isSpinning ? styles.spinning : ''}`}
           style={{ transform: `rotate(${spinPosition}deg)` }}
         ></div>
       </div>
-      <Bets bet={bet} setBet={setBet} bets={bets} setBets={setBets} isSpinning={isSpinning} />
-      <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
     </div>
   );
 };

@@ -2,7 +2,6 @@
 .container {
     position: relative;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -17,13 +16,17 @@
     position: relative;
     transition: 7s cubic-bezier(0.25, 1, 0.5, 1);
     background-repeat: no-repeat;
+    overflow: hidden;
 }
 
-    .roulette{
-        margin-top: 60px;
-    }
+.container1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-.roulette::after {
+
+.wheelcontainer::after {
     content: '';
     width: 205px;
     height: 150px;
@@ -32,9 +35,9 @@
     background-repeat: no-repeat;
     position: absolute;
     left: 0px;
-    right: 0;
+    right: 0px;
     top: 0;
-    bottom: 715px;
+    bottom: 545px;
     margin: auto;
     z-index: 1;
 }
@@ -63,4 +66,8 @@
 .betControls button:disabled {
     background-color: #777;
     cursor: not-allowed;
+}
+
+.wheelwithHistory{
+    display: flex;
 }

@@ -15,7 +15,7 @@ interface BetsProps {
 }
 
 const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
-  const { user } = useUser();
+
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
   const [roundComplete, setRoundComplete] = useState(false);
@@ -38,23 +38,33 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
   const renderButtonWithBets = (type: string, imageSrc: string, multiplier: string) => {
     const totalBet = calculateTotalBet(type);
     return (
-      <button
-        className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
-        onClick={() => handleBet(type)}
-        disabled={isSpinning || bet <= 0}
-      >
-        <span className={styles.winMultiplier}>PAYS {multiplier}</span>
-        <div className={styles.imageContainer}>
-          <Image src={imageSrc} width={50} height={50} alt={type} />
-          {totalBet > 0 && !roundComplete && (
-            <div className={styles.betInfo}>
-              <Image src={user?.picture ?? '/defaultAvatar/defAv.jpg'} height={25} width={25} alt="User Picture" />
-              <span>{totalBet}</span>
-            </div>
-          )}
+      <div className={styles.betContainer}>
+        <button
+          className={`${styles.betButton} ${bets[type] ? styles.selected : ''}`}
+          onClick={() => handleBet(type)}
+          disabled={isSpinning || bet <= 0}
+        >
+          <div className={styles.imageContainer}>
+            <Image src={imageSrc} width={50} height={50} alt={type} />
+          </div>
+          <span className={styles.winMultiplier}>PAYS {multiplier}</span>
+        </button>
+        <div className={styles.betSceleton}>
+          <div className={styles.betInfo}>
+            {totalBet > 0 && !roundComplete && (
+              <>
+                <Image
+                  src={"/defaultAvatar/defAv.jpg"}
+                  height={50}
+                  width={50}
+                  alt="User Picture"
+                />
+                <div>{totalBet}</div>
+              </>
+            )}
+          </div>
         </div>
-        
-      </button>
+      </div>
     );
   };
 

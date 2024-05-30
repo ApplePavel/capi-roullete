@@ -30,18 +30,23 @@
     justify-content: space-around;
     width: 100%;
     margin-bottom: 20px;
+
   }
+
+ 
   
   .betButton {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center;
+    width: 100%;
     padding: 10px;
     border-radius: 10px;
     border: none;
+    align-items: center;
     background: #282c34;
     cursor: pointer;
     transition: background 0.3s;
+    font-size: 26px;
   }
   
   
@@ -67,7 +72,7 @@
     background: #282c34;
     color: white;
     cursor: pointer;
-    margin: 5px;
+
     transition: background 0.3s;
   }
   
@@ -75,3 +80,31 @@
     background: #61dafb;
   }
   
+  .buttonsContainer{
+    margin: 0 25px;
+  }
+  
+  .betSceleton{
+    margin-top: 15px;
+    width: 15vw;
+    height: 70px;
+    border-radius: 10px;
+    background: #282c34;
+  }
+  
+  .betInfo{
+    display: flex;
+    padding: 0 15px 0 5px;
+    justify-content: space-between;
+    font-size: 25px;
+    align-items: center;
+    transition: .3s linear
+  }
+
+  .winMultiplier{
+    font-family: var(--font-family);
+    font-size: 28px;
+    color: white;
+    font-weight: 600;
+    
+  }

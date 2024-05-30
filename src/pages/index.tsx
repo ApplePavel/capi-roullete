@@ -27,6 +27,7 @@ const Home: React.FC = () => {
           isSpinning={isSpinning}
           setIsSpinning={setIsSpinning}
         />
+        <SpinResults />
         <Bets
           bet={bet}
           setBet={setBet}
@@ -34,7 +35,7 @@ const Home: React.FC = () => {
           setBets={setBets}
           isSpinning={isSpinning}
         />
-        <SpinResults />
+        
 
     </div>
   );
