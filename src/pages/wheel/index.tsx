@@ -2,7 +2,6 @@ import styles from '../../styles/Header.module.css';
 import WheelF from "../../components/Wheel/Wheel";
 import WheelHistory from '../../components/Wheel/WhellHistory/WheelHistory'
 
-export const runtime = 'edge';
 
 const Wheel: React.FC = () => {
   return (

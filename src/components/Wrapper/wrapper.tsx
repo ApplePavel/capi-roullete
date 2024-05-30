@@ -2,8 +2,6 @@ import React, { ReactNode } from 'react';
 import Header from '../Header/Header';
 import styles from '../../styles/Wrapper.module.css'
 
-export const runtime = 'edge';
-
 interface LayoutProps {
   children: ReactNode;
 }

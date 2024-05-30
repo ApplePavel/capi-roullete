@@ -8,7 +8,6 @@ import styles from '../styles/Roulette.module.css';
 
 const TimerInSec = 7;
 
-export const runtime = 'edge';
 
 const Home: React.FC = () => {
   const [bet, setBet] = useState(0);
