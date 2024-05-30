@@ -10,11 +10,13 @@ const TimerInSec = 7;
 
 
 const Home: React.FC = () => {
+  
   const [bet, setBet] = useState(0);
   const [bets, setBets] = useState<{ [key: string]: number }>({});
   const [isSpinning, setIsSpinning] = useState(false);
 
   return (
+    
     <div className={styles.container}>
         <Timer duration={TimerInSec} isSpinning={isSpinning} setIsSpinning={setIsSpinning} /> 
         <Roulette

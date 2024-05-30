@@ -13,8 +13,9 @@ const montserrat = Montserrat({
   subsets: ['latin'], 
 });
 
-
+export const runtime = 'edge';
 function MyApp({ Component, pageProps }: AppProps) {
+  
   return (
     <UserProvider>
       <Provider store={store}>
