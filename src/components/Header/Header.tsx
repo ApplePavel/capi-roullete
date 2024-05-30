@@ -28,7 +28,7 @@ const Header: React.FC = () => {
             />
           </Link>
           <Link href="/hilo" className={styles.game}>
-            <Image src="/hilo/hilo.png" width={45} height={55} alt="Roulette" />
+            <Image src="/icons/hilo.png" width={45} height={55} alt="Roulette" />
           </Link>
         </div>
 
