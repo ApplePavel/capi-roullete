@@ -2,6 +2,7 @@ import React, { ReactNode } from 'react';
 import Header from '../Header/Header';
 import styles from '../../styles/Wrapper.module.css'
 
+
 interface LayoutProps {
   children: ReactNode;
 }

@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "pages:build": "npx @cloudflare/next-on-pages"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.5.0",
@@ -19,6 +20,7 @@
     "redux-persist": "^6.0.0"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^1.11.3",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
