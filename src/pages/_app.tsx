@@ -8,12 +8,12 @@ import '../styles/globals.css';
 import { Montserrat } from 'next/font/google';
 import Wrapper from '../components/Wrapper/wrapper'
 
+export const runtime = 'edge';
 const montserrat = Montserrat({
   weight: ['400', '700'], 
   subsets: ['latin'], 
 });
 
-export const runtime = 'edge';
 function MyApp({ Component, pageProps }: AppProps) {
   
   return (
