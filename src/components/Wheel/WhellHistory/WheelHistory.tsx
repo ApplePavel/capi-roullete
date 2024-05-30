@@ -10,7 +10,7 @@ const WheelHistory: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.spins}>
-        {spins.slice(-17).map((spin, index) => {
+        {spins.slice(-17).reverse().map((spin, index) => {
           const segment = determineWinningSegment(spin);
           const width = segment === 'x21' ? 100 :
                         segment === 'x11' ? 80 :
