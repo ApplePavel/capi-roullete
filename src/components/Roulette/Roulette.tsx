@@ -1,7 +1,6 @@
-// Roulette.tsx
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { decrementBalance, incrementBalance } from '../../store/balanceSlice';
+import { incrementBalance } from '../../store/balanceSlice';
 import { addSpin } from '../../store/resultsRouletteSlice';
 import { generateSpinPosition } from '../Roulette/random/generateposition';
 import { determineWinningSegment } from '../Roulette/random/determineWinningSegment';
@@ -31,17 +30,19 @@ const Roulette: React.FC<RouletteProps> = ({ bet, setBet, bets, setBets, isSpinn
 
             const winningSegment = determineWinningSegment(randomNumber);
 
-            Object.keys(bets).forEach(betType => {
-              const betAmount = bets[betType];
-              const won = betType === winningSegment;
-              const winMultiplier = winningSegment === 'golden' ? 14 : 2;
+            // Determine the win multiplier based on the winning segment
+            let winMultiplier = 1;
+            if (winningSegment === 'golden') {
+              winMultiplier = 14;
+            } else {
+              winMultiplier = 2;
+            }
 
-              if (won) {
-                dispatch(incrementBalance(betAmount * winMultiplier));
-              } else {
-                dispatch(decrementBalance(betAmount));
-              }
-            });
+            const totalBet = Object.values(bets).reduce((sum, betAmount) => sum + betAmount, 0);
+
+            if (Object.keys(bets).includes(winningSegment)) {
+              dispatch(incrementBalance(totalBet * winMultiplier));
+            }
 
             setBets({});
             setSpinPosition(6650);

@@ -18,13 +18,13 @@ const Bets = ({ bet, setBet, bets, setBets, isSpinning }: BetsProps) => {
   const balance = useSelector((state: RootState) => state.balance.balance);
   const dispatch = useDispatch();
   const [roundComplete, setRoundComplete] = useState(false);
-  const { user } = useUser(); // Destructure user from useUser
+  const { user } = useUser();
 
   const handleBet = (betType: string) => {
     if (balance >= bet) {
       const newBets = { ...bets, [betType]: (bets[betType] || 0) + bet };
       setBets(newBets);
-      dispatch(decrementBalance(bet));
+      dispatch(decrementBalance(bet)); // Deduct balance when placing a bet
       setRoundComplete(false);
     } else {
       setBet(balance);

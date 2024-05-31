@@ -2,8 +2,6 @@ import RandomOrg from 'random-org';
 
 const randomKEY = new RandomOrg({ apiKey: '2da8fc59-9819-4e79-bf69-e1bbbea60c0a' });
 
-
-
 export const generateSpinPosition = async (): Promise<number[]> => {
   try {
     const result = await randomKEY.generateIntegers({ min: 1, max: 15, n: 1 });
